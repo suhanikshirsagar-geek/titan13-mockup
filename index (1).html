@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titan13Toy — Built to Move. Made to Create.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--bg2:#f6f6f6;--bg3:#eeeeee;--bg4:#e4e4e4;
+  --dark:#0e0e0e;--dark2:#1a1a1a;
+  --tx:#111;--tx2:#555;--tx3:#888;--txW:#fff;
+  --p:#d70b24;--pG:linear-gradient(135deg,#b80a1f,#ff2d47);--pg:rgba(215,11,36,.18);
+  --a:#f9df22;--aD:rgba(249,223,34,.12);
+  --o:rgba(0,0,0,.08);--oD:rgba(0,0,0,.04);
+  --glass:rgba(255,255,255,.82);--glassB:rgba(0,0,0,.06);
+  --fd:'Outfit',sans-serif;--fb:'Inter',sans-serif;
+  --r:6px;--e:cubic-bezier(.16,1,.3,1)
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--fb);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}
+.ct{max-width:1280px;margin:0 auto;padding:0 clamp(1rem,3vw,2.5rem)}
+
+/* Reveal */
+[data-r]{opacity:0;transform:translateY(32px);transition:opacity .7s var(--e),transform .7s var(--e)}
+[data-r].v{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.08s}[data-d="2"]{transition-delay:.16s}[data-d="3"]{transition-delay:.24s}[data-d="4"]{transition-delay:.32s}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fd);font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:var(--r);padding:.85rem 1.75rem;transition:all .3s var(--e)}
+.bp{background:var(--pG);color:#fff;box-shadow:0 4px 16px var(--pg)}
+.bp:hover{filter:brightness(1.1);box-shadow:0 6px 24px var(--pg);transform:translateY(-1px)}
+.bg-d{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px)}
+.bg-d:hover{background:rgba(255,255,255,.2)}
+.bg-l{background:transparent;color:var(--tx);border:1px solid var(--o)}
+.bg-l:hover{border-color:rgba(0,0,0,.2);background:var(--bg2)}
+
+/* ═══ ANNOUNCE ═══ */
+.an{background:var(--dark);padding:.42rem 0;overflow:hidden}
+.an-t{display:flex;white-space:nowrap;animation:tk 35s linear infinite}
+.an-t span{flex-shrink:0;padding:0 2.5rem;font-family:var(--fd);font-size:.6rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.an-t span::after{content:'✦';margin-left:2.5rem;opacity:.35}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* ═══ NAV ═══ */
+.nv{position:sticky;top:0;z-index:100;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--glassB)}
+.nv-i{display:flex;align-items:center;justify-content:space-between;height:58px}
+.nv-l{font-family:var(--fd);font-size:1.25rem;font-weight:800;color:var(--dark);letter-spacing:-.02em}
+.nv-l em{font-style:normal;color:var(--p)}
+.nv-k{display:flex;gap:1.75rem;list-style:none}
+.nv-k a{font-family:var(--fd);font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--tx3);transition:color .2s}
+.nv-k a:hover{color:var(--tx)}
+.nv-r{display:flex;align-items:center;gap:1rem}
+.nv-r button{background:0;border:0;color:var(--tx3);font-size:1rem;transition:color .2s}
+.nv-r button:hover{color:var(--tx)}
+.nv-cb{font-family:var(--fd);font-size:.5rem;font-weight:700;background:var(--p);color:#fff;width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;position:relative;top:-6px;left:-4px}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;width:100%;aspect-ratio:16/7;max-height:85vh;overflow:hidden;background:var(--dark)}
+.h-sl{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
+.h-sl.ac{opacity:1}
+.h-sl video{width:100%;height:100%;object-fit:cover;background:#000}
+.h-gr{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,.05) 70%,transparent 100%)}
+.h-ct{position:absolute;top:50%;left:0;transform:translateY(-50%);z-index:2;padding-left:clamp(1.5rem,5vw,5rem);max-width:560px}
+.h-ey{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1rem}
+.h-ey::before{content:'';width:24px;height:1.5px;background:var(--p)}
+.h-ey span{font-family:var(--fd);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--p)}
+.h-ti{font-family:var(--fd);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:.85rem}
+.h-su{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:1.75rem;max-width:400px}
+.h-bt{display:flex;gap:.6rem;flex-wrap:wrap}
+.h-dots{position:absolute;bottom:4%;left:50%;transform:translateX(-50%);display:flex;gap:.4rem;z-index:3}
+.h-dot{width:32px;height:3px;background:rgba(255,255,255,.2);border:0;border-radius:2px;padding:0;overflow:hidden;cursor:pointer}
+.h-dot.ac .h-df{animation:dprog 6s linear forwards}
+.h-df{width:0;height:100%;background:#fff;border-radius:2px}
+@keyframes dprog{to{width:100%}}
+
+/* ═══ TRUST ═══ */
+.trust{border-bottom:1px solid var(--o);padding:1rem 0}
+.trust-g{display:grid;grid-template-columns:repeat(4,1fr)}
+.trust-i{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.4rem 0}
+.trust-ic{color:var(--p);font-size:.85rem}
+.trust-tx{font-family:var(--fd);font-size:.6rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--tx3)}
+
+/* ═══ SECTION UTILS ═══ */
+.sh{display:flex;align-items:center;gap:.65rem;margin-bottom:2rem}
+.sa{width:3px;height:18px;background:var(--p);border-radius:1px}
+.st{font-family:var(--fd);font-size:1.25rem;font-weight:700;letter-spacing:-.02em;color:var(--tx)}
+.sh-c{text-align:center;margin-bottom:2.5rem}
+.sh-c .st{font-size:1.5rem}
+.sh-c .st-sub{font-size:.85rem;color:var(--tx2);margin-top:.4rem;font-weight:400}
+
+/* ═══ COLLECTIONS ═══ */
+.cols{padding:4rem 0}
+.col-g{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
+.col-c{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;background:var(--bg2);cursor:pointer}
+.col-c img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--e)}
+.col-c:hover img{transform:scale(1.04)}
+.col-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.05) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem}
+.col-n{font-family:var(--fd);font-size:.85rem;font-weight:600;color:#fff}
+.col-d{font-size:.68rem;color:rgba(255,255,255,.6);margin-top:.15rem}
+.col-b{position:absolute;top:.65rem;right:.65rem;background:var(--a);color:var(--dark);font-family:var(--fd);font-size:.5rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.18rem .45rem;border-radius:4px}
+
+/* ═══ FEATURED VIDEO ═══ */
+.feat{position:relative;background:var(--dark);overflow:hidden;width:100%;height:auto;min-height:600px}
+.feat video{width:100%;height:100%;object-fit:cover;background:#000}
+.feat-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.25) 50%,transparent 100%)}
+.feat-ct{position:absolute;top:50%;left:0;transform:translateY(-50%);padding-left:clamp(1.5rem,5vw,5rem);max-width:400px}
+.feat-ey{font-family:var(--fd);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--a);margin-bottom:.5rem}
+.feat-ti{font-family:var(--fd);font-size:1.6rem;font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:.5rem}
+.feat-tx{font-size:.78rem;color:rgba(255,255,255,.55);margin-bottom:1.25rem;line-height:1.5}
+
+/* ═══ PRODUCTS ═══ */
+.prods{padding:4rem 0}
+.prod-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.prod-c{background:var(--bg);border:1px solid var(--o);border-radius:var(--r);overflow:hidden;transition:transform .3s var(--e),box-shadow .3s}
+.prod-c:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.prod-im{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:.75rem;overflow:hidden}
+.prod-im img{width:88%;height:88%;object-fit:contain;transition:transform .5s var(--e)}
+.prod-c:hover .prod-im img{transform:translateY(-5px) scale(1.02)}
+.prod-bg{position:absolute;top:.55rem;right:.55rem;background:var(--a);color:var(--dark);font-family:var(--fd);font-size:.5rem;font-weight:700;letter-spacing:.03em;padding:.18rem .4rem;border-radius:4px;z-index:2}
+.prod-nf{padding:.85rem 1rem 1rem}
+.prod-nm{font-family:var(--fd);font-size:.78rem;font-weight:600;color:var(--tx);margin-bottom:.3rem}
+.prod-pr{display:flex;align-items:baseline;gap:.35rem;margin-bottom:.7rem}
+.prod-now{font-family:var(--fd);font-weight:700;font-size:.88rem;color:var(--tx)}
+.prod-was{font-size:.72rem;color:var(--tx3);text-decoration:line-through}
+.prod-btn{width:100%;padding:.6rem;background:var(--dark);color:#fff;border:0;font-family:var(--fd);font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;transition:background .2s}
+.prod-btn:hover{background:#333}
+
+/* ═══ REVIEWS ═══ */
+.revs{padding:5rem 0;background:var(--bg2)}
+.rev-stats{display:flex;align-items:center;justify-content:center;gap:3rem;margin-bottom:3rem;flex-wrap:wrap}
+.rev-stat{text-align:center}
+.rev-stat-num{font-family:var(--fd);font-size:2.5rem;font-weight:800;color:var(--tx);line-height:1}
+.rev-stat-label{font-size:.7rem;color:var(--tx2);margin-top:.2rem}
+.rev-stat-stars{color:var(--a);font-size:1.1rem;letter-spacing:2px}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.rev-card{background:var(--bg);border:1px solid var(--o);border-radius:var(--r);padding:1.4rem;display:flex;flex-direction:column;transition:box-shadow .3s}
+.rev-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.rev-card--feat{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.2fr;padding:0;overflow:hidden}
+.rev-feat-img{width:100%;height:100%;object-fit:cover;min-height:250px}
+.rev-feat-body{padding:2rem;display:flex;flex-direction:column;justify-content:center}
+.rev-stars{font-size:.7rem;color:var(--a);letter-spacing:2px;margin-bottom:.5rem}
+.rev-text{font-size:.82rem;color:var(--tx2);line-height:1.7;margin-bottom:.75rem;flex:1}
+.rev-text mark{background:var(--aD);color:var(--tx);padding:.05em .2em;border-radius:2px}
+.rev-foot{display:flex;align-items:center;justify-content:space-between}
+.rev-name{font-family:var(--fd);font-size:.68rem;font-weight:500;color:var(--tx3)}
+.rev-badge{font-family:var(--fd);font-size:.48rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--p);border:1px solid rgba(215,11,36,.15);padding:.12rem .35rem;border-radius:4px}
+.rev-more{text-align:center;margin-top:2rem}
+.rev-more a{font-family:var(--fd);font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--tx);border-bottom:1.5px solid var(--tx);padding-bottom:.15rem;transition:all .2s}
+.rev-more a:hover{color:var(--p);border-color:var(--p)}
+
+/* ═══ VALUES ═══ */
+.vals{padding:4rem 0}
+.val-g{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.val-c{border-radius:var(--r);overflow:hidden;background:var(--bg2)}
+.val-im{width:100%;aspect-ratio:16/10;object-fit:cover}
+.val-bd{padding:1.25rem}
+.val-ti{font-family:var(--fd);font-size:.82rem;font-weight:600;color:var(--tx);margin-bottom:.3rem}
+.val-tx{font-size:.75rem;color:var(--tx2);line-height:1.55}
+
+/* ═══ COMMUNITY ═══ */
+.comm{padding:3rem 0 1.5rem;overflow:hidden}
+.comm-t{display:flex;gap:4px;animation:cs 45s linear infinite}
+.comm-t img{height:180px;width:auto;object-fit:cover;flex-shrink:0;border-radius:var(--r);transition:all .3s}
+.comm-t img:hover{transform:scale(1.03);opacity:.85}
+@keyframes cs{to{transform:translateX(-50%)}}
+.comm-ct{text-align:center;padding:1.5rem;font-size:.78rem;color:var(--tx3)}
+.comm-s{display:flex;justify-content:center;gap:1.5rem;margin-top:.4rem}
+.comm-s a{font-family:var(--fd);font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--tx3);transition:color .2s}
+.comm-s a:hover{color:var(--tx)}
+
+/* ═══ PROCESS ═══ */
+.proc{padding:4rem 0;background:var(--bg2);border-top:1px solid var(--o);border-bottom:1px solid var(--o)}
+.proc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;max-width:900px;margin:0 auto;text-align:center;position:relative}
+.proc-g::before{content:'';position:absolute;top:20px;left:17%;right:17%;height:1px;background:var(--bg4)}
+.proc-n{font-family:var(--fd);font-size:1.6rem;font-weight:800;color:var(--p);background:var(--bg2);display:inline-block;padding:0 .5rem;position:relative;z-index:1;margin-bottom:.65rem}
+.proc-l{font-family:var(--fd);font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);margin-bottom:.35rem}
+.proc-b{font-size:.72rem;color:var(--tx2);line-height:1.5}
+
+/* ═══ NEWSLETTER ═══ */
+.nl{padding:4rem 0;text-align:center}
+.nl-ti{font-family:var(--fd);font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;letter-spacing:-.02em;color:var(--tx);margin-bottom:.4rem}
+.nl-su{font-size:.82rem;color:var(--tx2);margin-bottom:1.5rem}
+.nl-f{display:flex;max-width:400px;margin:0 auto .85rem}
+.nl-in{flex:1;padding:.75rem 1rem;background:var(--bg2);border:1px solid var(--o);border-right:0;border-radius:var(--r) 0 0 var(--r);color:var(--tx);font-size:.8rem;outline:0}
+.nl-in:focus{border-color:var(--p)}
+.nl-in::placeholder{color:var(--tx3)}
+.nl-bt{padding:.75rem 1.25rem;background:var(--pG);color:#fff;border:0;border-radius:0 var(--r) var(--r) 0;font-family:var(--fd);font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:filter .2s}
+.nl-bt:hover{filter:brightness(1.1)}
+.nl-tr{font-size:.62rem;color:var(--tx3);font-family:var(--fd);letter-spacing:.03em}
+
+/* ═══ PDP ═══ */
+.pdp{padding:2.5rem 0 0;border-top:1px solid var(--o)}
+.pdp-bc{font-size:.68rem;color:var(--tx3);margin-bottom:1.5rem}
+.pdp-bc a{transition:color .15s}.pdp-bc a:hover{color:var(--tx)}
+.pdp-bc i{margin:0 .35rem;opacity:.3;font-style:normal}
+.pdp-h{display:grid;grid-template-columns:1.15fr 1fr;gap:3rem;margin-bottom:3rem}
+.pdp-mm{width:100%;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#000}
+.pdp-mm video,.pdp-mm img{width:100%;height:100%;object-fit:cover;background:#000}
+.pdp-ts{display:flex;gap:.4rem;margin-top:.6rem}
+.pdp-tb{width:64px;height:64px;border-radius:4px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .15s;background:var(--bg2);padding:0}
+.pdp-tb.ac{border-color:var(--p)}
+.pdp-tb img{width:100%;height:100%;object-fit:cover}
+.pdp-cl{font-family:var(--fd);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--p);margin-bottom:.4rem}
+.pdp-tt{font-family:var(--fd);font-size:clamp(1.4rem,2.5vw,1.85rem);font-weight:800;letter-spacing:-.02em;color:var(--tx);margin-bottom:.65rem}
+.pdp-ra{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem}
+.pdp-ra-s{color:var(--a);font-size:.7rem;letter-spacing:1px}
+.pdp-ra-c{font-size:.7rem;color:var(--tx2)}
+.pdp-pb{display:flex;align-items:baseline;gap:.5rem;margin-bottom:1.25rem}
+.pdp-pn{font-family:var(--fd);font-size:1.5rem;font-weight:800;color:var(--tx)}
+.pdp-pw{font-size:.88rem;color:var(--tx3);text-decoration:line-through}
+.pdp-sv{background:var(--a);color:var(--dark);font-family:var(--fd);font-size:.5rem;font-weight:700;letter-spacing:.04em;padding:.18rem .45rem;border-radius:4px}
+.pdp-ds{font-size:.82rem;color:var(--tx2);line-height:1.65;margin-bottom:1.5rem;max-width:460px}
+.pdp-q{display:flex;align-items:center;margin-bottom:.85rem;width:110px}
+.pdp-q button{width:34px;height:38px;background:var(--bg2);border:1px solid var(--o);color:var(--tx2);font-size:.85rem;transition:all .15s}
+.pdp-q button:first-child{border-radius:4px 0 0 4px;border-right:0}
+.pdp-q button:last-child{border-radius:0 4px 4px 0;border-left:0}
+.pdp-q button:hover{color:var(--tx);background:var(--bg3)}
+.pdp-q input{width:42px;height:38px;text-align:center;background:var(--bg);border:1px solid var(--o);color:var(--tx);font-family:var(--fd);font-size:.82rem;outline:0}
+.pdp-ac{width:100%;max-width:360px;padding:.95rem;background:var(--pG);color:#fff;border:0;border-radius:var(--r);font-family:var(--fd);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 4px 20px var(--pg);transition:all .3s var(--e);margin-bottom:.5rem}
+.pdp-ac:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.pdp-by{width:100%;max-width:360px;padding:.8rem;background:var(--bg);border:1px solid var(--o);color:var(--tx2);border-radius:var(--r);font-family:var(--fd);font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;margin-bottom:1.25rem}
+.pdp-by:hover{border-color:rgba(0,0,0,.2);color:var(--tx)}
+.pdp-tr{display:flex;gap:1.15rem;flex-wrap:wrap}
+.pdp-ti{display:flex;align-items:center;gap:.35rem;font-family:var(--fd);font-size:.55rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--tx3)}
+.pdp-tic{color:var(--p);font-size:.75rem}
+.pdp-ad{margin:2rem 0 3rem}
+.pdp-ai{border-bottom:1px solid var(--o)}
+.pdp-ah{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;cursor:pointer;background:0;border:0;width:100%;text-align:left;color:var(--tx);font-family:var(--fd);font-size:.8rem;font-weight:600}
+.pdp-ah::after{content:'+';font-size:1rem;color:var(--tx3);transition:transform .3s}
+.pdp-ai.op .pdp-ah::after{transform:rotate(45deg)}
+.pdp-ab{max-height:0;overflow:hidden;transition:max-height .4s var(--e)}
+.pdp-ai.op .pdp-ab{max-height:300px}
+.pdp-ax{padding:0 0 1rem;font-size:.78rem;color:var(--tx2);line-height:1.65}
+.pdp-up{padding:2.5rem 0;border-top:1px solid var(--o)}
+
+/* ═══ FOOTER ═══ */
+.fo{background:var(--dark);padding:3.5rem 0 0;color:rgba(255,255,255,.5)}
+.fo-g{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:2.5rem}
+.fo .nv-l{color:#fff}
+.fo-tl{font-size:.75rem;margin:.6rem 0 1rem;line-height:1.55}
+.fo-s{display:flex;gap:1rem}
+.fo-s a{font-family:var(--fd);font-size:.58rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.35);transition:color .2s}
+.fo-s a:hover{color:#fff}
+.fo-ct{font-family:var(--fd);font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.85rem}
+.fo-c ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.fo-c ul a{font-size:.72rem;transition:color .2s}
+.fo-c ul a:hover{color:#fff}
+.fo-b{border-top:1px solid rgba(255,255,255,.08);padding:1rem 0;display:flex;justify-content:space-between;align-items:center;font-size:.6rem}
+.fo-p{display:flex;gap:.3rem}
+.fo-p span{background:rgba(255,255,255,.08);padding:.18rem .35rem;border-radius:3px;font-family:var(--fd);font-size:.5rem;font-weight:600}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){.prod-g{grid-template-columns:repeat(2,1fr)}.rev-grid{grid-template-columns:1fr 1fr}.rev-card--feat{grid-column:1/-1}.pdp-h{grid-template-columns:1fr}.col-g{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.nv-k{display:none}.trust-g{grid-template-columns:1fr 1fr}.col-g{grid-template-columns:1fr 1fr}.val-g{grid-template-columns:1fr}.prod-g{grid-template-columns:1fr 1fr}.proc-g{grid-template-columns:1fr;gap:1.5rem}.proc-g::before{display:none}.rev-grid{grid-template-columns:1fr}.rev-card--feat{grid-template-columns:1fr}.rev-feat-img{max-height:180px}.fo-g{grid-template-columns:1fr 1fr}.fo-b{flex-direction:column;gap:.65rem;text-align:center}.pdp-h{gap:2rem}.pdp-ac,.pdp-by{max-width:100%}.rev-stats{gap:1.5rem}.hero{aspect-ratio:16/9}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+<div class="an"><div class="an-t"><span>Free Shipping on Orders +$37</span><span>12,000+ Happy Families</span><span>90-Day Warranty</span><span>Assembled & Ready to Play</span><span>Free Shipping on Orders +$37</span><span>12,000+ Happy Families</span><span>90-Day Warranty</span><span>Assembled & Ready to Play</span></div></div>
+
+<!-- NAV -->
+<nav class="nv"><div class="nv-i ct"><a href="#" class="nv-l">TITAN<em>13</em></a><ul class="nv-k"><li><a href="#">Home</a></li><li><a href="#">Catalog</a></li><li><a href="#">Collections</a></li><li><a href="#">Community</a></li><li><a href="#">Coming Soon</a></li></ul><div class="nv-r"><button>⌕</button><button>◯</button><button>▪<span class="nv-cb">2</span></button></div></div></nav>
+
+<!-- HERO -->
+<section class="hero" id="main">
+  <div class="h-sl ac" data-slide="0">
+    <video autoplay muted loop playsinline><source src="Figures_battle_on_202604031653.mp4" type="video/mp4"></video>
+    <div class="h-gr"></div>
+    <div class="h-ct"><div class="h-ey"><span>Animation Pack — 5 Characters</span></div><h1 class="h-ti">BUILT TO MOVE.</h1><p class="h-su">30+ points of articulation. 3D printed & hand-assembled. Arrives tested, accessorized, and ready to play.</p><div class="h-bt"><a href="#products" class="btn bp">Explore Collections →</a><a href="#" class="btn bg-d">▶ Watch in Action</a></div></div>
+  </div>
+  <div class="h-sl" data-slide="1">
+    <video autoplay muted loop playsinline><source src="Five_figures_circular_202604031635.mp4" type="video/mp4"></video>
+    <div class="h-gr"></div>
+    <div class="h-ct"><div class="h-ey"><span>Stop Motion Ready</span></div><h1 class="h-ti">EVERY DESK IS A BATTLEFIELD.</h1><p class="h-su">5 characters. Infinite stories. For action scenes, creative play, and stop-motion.</p><div class="h-bt"><a href="#pdp" class="btn bp">Shop Animation Pack →</a><a href="#" class="btn bg-d">View All Figures</a></div></div>
+  </div>
+  <div class="h-dots"><button class="h-dot ac" data-slide="0"><div class="h-df"></div></button><button class="h-dot" data-slide="1"><div class="h-df"></div></button></div>
+</section>
+
+<!-- TRUST -->
+<section class="trust"><div class="trust-g ct"><div class="trust-i"><span class="trust-ic">★</span><span class="trust-tx">12,000+ Happy Families</span></div><div class="trust-i"><span class="trust-ic">⛨</span><span class="trust-tx">90-Day Warranty</span></div><div class="trust-i"><span class="trust-ic">⇢</span><span class="trust-tx">Free Shipping +$37</span></div><div class="trust-i"><span class="trust-ic">✓</span><span class="trust-tx">Assembled & Ready</span></div></div></section>
+
+<!-- COLLECTIONS -->
+<section class="cols" data-r><div class="ct">
+  <div class="sh"><div class="sa"></div><h2 class="st">Shop the Universe</h2></div>
+  <div class="col-g">
+    <a href="#" class="col-c"><img src="https://titan13toy.com/cdn/shop/collections/exempl_5.png?v=1770345688&width=600" alt="Icons Line" loading="lazy"><div class="col-ov"><h3 class="col-n">Icons Line</h3><p class="col-d">Character-themed figures</p></div></a>
+    <a href="#" class="col-c"><img src="https://titan13toy.com/cdn/shop/collections/New_Releases_Catalog.png?v=1773511364&width=600" alt="Launch" loading="lazy"><div class="col-ov"><h3 class="col-n">Launch Collection</h3><p class="col-d">New arrivals</p></div></a>
+    <a href="#" class="col-c"><img src="https://titan13toy.com/cdn/shop/collections/exemple_3.png?v=1770342135&width=600" alt="Special" loading="lazy"><div class="col-ov"><span class="col-b">Limited</span><h3 class="col-n">Special Edition</h3><p class="col-d">Exclusive variants</p></div></a>
+    <a href="#" class="col-c"><img src="https://titan13toy.com/cdn/shop/collections/PACK_-_Catalog_Banner_T13.png?v=1754274500&width=600" alt="Packs" loading="lazy"><div class="col-ov"><h3 class="col-n">T13 Packs</h3><p class="col-d">Save more with bundles</p></div></a>
+  </div>
+</div></section>
+
+<!-- FEATURED VIDEO -->
+<section class="feat" data-r>
+  <video autoplay muted loop playsinline><source src="3D_printed_action_202604031823.mp4" type="video/mp4"></video>
+  <div class="feat-ov"></div>
+  <div class="feat-ct"><div class="feat-ey">New Drop</div><h2 class="feat-ti">Nightmare Collection</h2><p class="feat-tx">Dark variants. Limited edition. Unique accessories and exclusive colorways.</p><a href="#" class="btn bp">Shop Now →</a></div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="prods" id="products" data-r><div class="ct">
+  <div class="sh"><div class="sa"></div><h2 class="st">Best Sellers</h2></div>
+  <div class="prod-g">
+    <div class="prod-c" data-r data-d="1"><div class="prod-im" style="background:#faf0f0"><span class="prod-bg">SAVE 51%</span><img src="https://titan13toy.com/cdn/shop/files/Red_Product_PSD_AI_Trustpilot_Only_altern.png?v=1737711502&width=500" alt="Dummy 13" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">Dummy 13</h3><div class="prod-pr"><span class="prod-now">$19.95</span><span class="prod-was">$40.95</span></div><button class="prod-btn">Add to Cart</button></div></div>
+    <div class="prod-c" data-r data-d="2"><div class="prod-im" style="background:linear-gradient(125deg,#eef2fa 50%,#faf8ee 50%)"><span class="prod-bg">SAVE 34%</span><img src="https://titan13toy.com/cdn/shop/files/IndestructibleT13ProductImage_1.png?v=1761774894&width=500" alt="Indestructible" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">Indestructible Variants Vol.1</h3><div class="prod-pr"><span class="prod-now">$30.95</span><span class="prod-was">$46.95</span></div><button class="prod-btn">Add to Cart</button></div></div>
+    <div class="prod-c" data-r data-d="3"><div class="prod-im" style="background:#f2f2f2"><span class="prod-bg">SAVE 41%</span><img src="https://titan13toy.com/cdn/shop/files/HonoredT13ProductImage_2.png?v=1761774791&width=500" alt="Honored" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">The Honored T13</h3><div class="prod-pr"><span class="prod-now">$29.95</span><span class="prod-was">$50.95</span></div><button class="prod-btn">Add to Cart</button></div></div>
+    <div class="prod-c" data-r data-d="4"><div class="prod-im" style="background:#eef1f8"><span class="prod-bg">SAVE 26%</span><img src="https://titan13toy.com/cdn/shop/files/all_the_crew_2.png?v=1731872559&width=500" alt="Animation Pack" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">Animation Pack</h3><div class="prod-pr"><span class="prod-now">$29.95</span><span class="prod-was">$40.45</span></div><button class="prod-btn">Add to Cart</button></div></div>
+  </div>
+</div></section>
+
+<!-- VALUES -->
+<section class="vals" data-r><div class="ct"><div class="val-g">
+  <div class="val-c"><img class="val-im" src="https://titan13toy.com/cdn/shop/files/Basic_T13_PC_1440_x_600_px.png?v=1767788984&width=600" alt="" loading="lazy"><div class="val-bd"><h3 class="val-ti">Creativity Without Limits</h3><p class="val-tx">30+ points of articulation. Mix colors, swap parts, build new stories.</p></div></div>
+  <div class="val-c"><img class="val-im" src="https://titan13toy.com/cdn/shop/files/Christmas_Banner_T13_PC_1440_x_600_px_2.png?v=1766620499&width=600" alt="" loading="lazy"><div class="val-bd"><h3 class="val-ti">Built to Last</h3><p class="val-tx">PETG 3D-printed. Hand-assembled. 90-day replacement warranty.</p></div></div>
+  <div class="val-c"><img class="val-im" src="https://titan13toy.com/cdn/shop/files/Collection_Banner_T13_PC_1440_x_600_px.png?v=1763665376&width=600" alt="" loading="lazy"><div class="val-bd"><h3 class="val-ti">A Universe to Collect</h3><p class="val-tx">New characters every month. Your collection grows with you.</p></div></div>
+</div></div></section>
+
+<!-- REVIEWS -->
+<section class="revs" data-r><div class="ct">
+  <div class="sh-c"><h2 class="st">Loved by 12,000+ Families</h2><p class="st-sub">Real reviews from real parents, artists, and collectors</p></div>
+  <div class="rev-stats" data-r>
+    <div class="rev-stat"><div class="rev-stat-stars">★★★★★</div><div class="rev-stat-num">4.9</div><div class="rev-stat-label">Average Rating</div></div>
+    <div class="rev-stat"><div class="rev-stat-num">2,400+</div><div class="rev-stat-label">Verified Reviews</div></div>
+    <div class="rev-stat"><div class="rev-stat-num">97%</div><div class="rev-stat-label">Would Recommend</div></div>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card rev-card--feat" data-r>
+      <img class="rev-feat-img" src="https://titan13toy.com/cdn/shop/files/Banner_para_survey.png?v=1741449116&width=600" alt="" loading="lazy">
+      <div class="rev-feat-body"><div class="rev-stars">★★★★★</div><p class="rev-text" style="font-size:.92rem">"Buying from the official T13 site makes all the difference… <mark>the quality is amazing</mark> and the customer service is outstanding. My kids spend hours creating stories and scenarios. Toys that truly inspire creativity."</p><div class="rev-foot"><span class="rev-name">— Sarah M.</span><span class="rev-badge">Verified Purchase</span></div></div>
+    </div>
+    <div class="rev-card" data-r data-d="1"><div class="rev-stars">★★★★★</div><p class="rev-text">"I love the lore behind these figures! <mark>Exceeded my expectations</mark>, even better in person. Definitely worth it!"</p><div class="rev-foot"><span class="rev-name">— Carlos R.</span><span class="rev-badge">Verified Purchase</span></div></div>
+    <div class="rev-card" data-r data-d="2"><div class="rev-stars">★★★★★</div><p class="rev-text">"Got this for my son's birthday. <mark>No assembly needed</mark> — just open and play. Buying more when new characters drop."</p><div class="rev-foot"><span class="rev-name">— Jennifer K.</span><span class="rev-badge">Verified Purchase</span></div></div>
+    <div class="rev-card" data-r data-d="3"><div class="rev-stars">★★★★★</div><p class="rev-text">"Perfect artist reference. The articulation is <mark>incredible for the price</mark>. Highly recommended for creators and animators."</p><div class="rev-foot"><span class="rev-name">— Marcus T.</span><span class="rev-badge">Verified Purchase</span></div></div>
+    <div class="rev-card" data-r data-d="1"><div class="rev-stars">★★★★☆</div><p class="rev-text">"Great for stop-motion. <mark>Durable and poseable.</mark> My students love them. Ordering a class set."</p><div class="rev-foot"><span class="rev-name">— David L.</span><span class="rev-badge">Verified Purchase</span></div></div>
+    <div class="rev-card" data-r data-d="2"><div class="rev-stars">★★★★★</div><p class="rev-text">"The <mark>interchangeable parts</mark> are genius. My daughter mixes characters to make her own heroes. Best toy purchase this year."</p><div class="rev-foot"><span class="rev-name">— Amy W.</span><span class="rev-badge">Verified Purchase</span></div></div>
+    <div class="rev-card" data-r data-d="3"><div class="rev-stars">★★★★★</div><p class="rev-text">"Shipped fast, arrived perfect. <mark>Quality is noticeably better</mark> than the knockoffs on Amazon. Night and day difference."</p><div class="rev-foot"><span class="rev-name">— Jason P.</span><span class="rev-badge">Verified Purchase</span></div></div>
+  </div>
+  <div class="rev-more"><a href="#">Read All 2,400+ Reviews →</a></div>
+</div></section>
+
+<!-- COMMUNITY -->
+<section class="comm" data-r><div class="ct" style="padding-bottom:0"><div class="sh"><div class="sa"></div><h2 class="st">The T13 Community</h2></div></div>
+<div class="comm-t"><img src="https://titan13toy.com/cdn/shop/files/Red_Product_PSD_AI_Trustpilot_Only_altern.png?v=1737711502&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/files/IndestructibleT13ProductImage_1.png?v=1761774894&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/files/HonoredT13ProductImage_2.png?v=1761774791&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/files/all_the_crew_2.png?v=1731872559&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/collections/exemple_6.png?v=1770343019&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/collections/exempl_5.png?v=1770345688&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/collections/exemple_3.png?v=1770342135&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/files/Red_Product_PSD_AI_Trustpilot_Only_altern.png?v=1737711502&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/files/IndestructibleT13ProductImage_1.png?v=1761774894&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/files/HonoredT13ProductImage_2.png?v=1761774791&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/files/all_the_crew_2.png?v=1731872559&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/collections/exemple_6.png?v=1770343019&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/collections/exempl_5.png?v=1770345688&width=280" alt="" loading="lazy"><img src="https://titan13toy.com/cdn/shop/collections/exemple_3.png?v=1770342135&width=280" alt="" loading="lazy"></div>
+<div class="comm-ct"><p>Share your T13 creations</p><div class="comm-s"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div></div></section>
+
+<!-- PROCESS -->
+<section class="proc" data-r><div class="ct"><div class="sh-c"><h2 class="st">How It's Made</h2></div>
+<div class="proc-g"><div data-r data-d="1"><div class="proc-n">01</div><div class="proc-l">Printed</div><p class="proc-b">Premium PETG on industrial 3D printers with precision tolerances.</p></div><div data-r data-d="2"><div class="proc-n">02</div><div class="proc-l">Assembled</div><p class="proc-b">Hand-assembled and tested. Every joint checked for range of motion.</p></div><div data-r data-d="3"><div class="proc-n">03</div><div class="proc-l">Shipped to You</div><p class="proc-b">Ships in 3–4 days with free accessories. Free shipping +$37.</p></div></div>
+</div></section>
+
+<!-- NEWSLETTER -->
+<section class="nl" data-r><div class="ct"><h2 class="nl-ti">Join the T13 Workshop</h2><p class="nl-su">Early access to new drops, exclusive variants, and community features.</p><form class="nl-f" onsubmit="event.preventDefault()"><input type="email" class="nl-in" placeholder="Enter your email" required><button type="submit" class="nl-bt">Subscribe</button></form><p class="nl-tr">Trusted by 12,000+ collectors worldwide</p></div></section>
+
+<!-- ════ PDP ════ -->
+<section class="pdp" id="pdp" data-r><div class="ct">
+<div class="pdp-bc"><a href="#">Home</a><i>/</i><a href="#">Collections</a><i>/</i><a href="#">Icons Line</a><i>/</i><strong style="color:var(--tx)">Animation Pack</strong></div>
+<div class="pdp-h">
+  <div><div class="pdp-mm" id="pM"><video autoplay muted loop playsinline><source src="Figures_battle_on_202604031653.mp4" type="video/mp4"></video></div>
+  <div class="pdp-ts">
+    <button class="pdp-tb ac" onclick="sM('v','circle.mp4',this)"><img src="https://titan13toy.com/cdn/shop/files/all_the_crew_2.png?v=1731872559&width=100" alt=""></button>
+    <button class="pdp-tb" onclick="sM('v','battle.mp4',this)"><img src="https://titan13toy.com/cdn/shop/files/all_the_crew_2.png?v=1731872559&width=100" alt="" style="filter:hue-rotate(30deg)"></button>
+    <button class="pdp-tb" onclick="sM('i','https://titan13toy.com/cdn/shop/files/all_the_crew_2.png?v=1731872559&width=800',this)"><img src="https://titan13toy.com/cdn/shop/files/all_the_crew_2.png?v=1731872559&width=100" alt=""></button>
+    <button class="pdp-tb" onclick="sM('i','https://titan13toy.com/cdn/shop/collections/exempl_5.png?v=1770345688&width=800',this)"><img src="https://titan13toy.com/cdn/shop/collections/exempl_5.png?v=1770345688&width=100" alt=""></button>
+  </div></div>
+  <div class="pdp-if">
+    <div class="pdp-cl">Icons Line — Animation</div>
+    <h1 class="pdp-tt">Animation Pack</h1>
+    <div class="pdp-ra"><span class="pdp-ra-s">★★★★★</span><span class="pdp-ra-c">47 Reviews</span></div>
+    <div class="pdp-pb"><span class="pdp-pn">$29.95</span><span class="pdp-pw">$40.45</span><span class="pdp-sv">SAVE 26%</span></div>
+    <p class="pdp-ds">5 individually sold character-themed T13 figures. 30+ articulation points each. Assembled with free weapon and hand accessories.</p>
+    <div class="pdp-q"><button onclick="cQ(-1)">−</button><input type="number" value="1" min="1" id="qI"><button onclick="cQ(1)">+</button></div>
+    <button class="pdp-ac">Add to Cart — $29.95</button>
+    <button class="pdp-by">Buy It Now</button>
+    <div class="pdp-tr"><div class="pdp-ti"><span class="pdp-tic">⇢</span>Free Shipping +$37</div><div class="pdp-ti"><span class="pdp-tic">⛨</span>90-Day Warranty</div><div class="pdp-ti"><span class="pdp-tic">✓</span>Assembled & Ready</div></div>
+  </div>
+</div>
+<div class="pdp-ad">
+  <div class="pdp-ai op"><button class="pdp-ah" onclick="tA(this)">What's Included</button><div class="pdp-ab"><div class="pdp-ax">Each figure sold individually. Includes: 1× T13 Figure (assembled), 6 pairs replacement hands, weapon accessories. All accessories fit any T13 model.</div></div></div>
+  <div class="pdp-ai"><button class="pdp-ah" onclick="tA(this)">Specifications</button><div class="pdp-ab"><div class="pdp-ax">Material: PETG + PLA · Height: 5.12" / 13cm · Articulation: 30+ · Weight: ~45g · Age: 8+</div></div></div>
+  <div class="pdp-ai"><button class="pdp-ah" onclick="tA(this)">Shipping & Returns</button><div class="pdp-ab"><div class="pdp-ax">Processing: 3–4 days. Delivery: 7–14 days. Free shipping +$37. 90-day replacement warranty.</div></div></div>
+  <div class="pdp-ai"><button class="pdp-ah" onclick="tA(this)">Credits</button><div class="pdp-ab"><div class="pdp-ax">DUMMY 13 © 2023 Lucky 13 Toys — CC BY 4.0. Design by Soozafone.</div></div></div>
+</div>
+<div class="pdp-up"><div class="sh"><div class="sa"></div><h2 class="st">Complete the Collection</h2></div>
+<div class="prod-g">
+  <div class="prod-c"><div class="prod-im" style="background:#faf0f0"><span class="prod-bg">SAVE 51%</span><img src="https://titan13toy.com/cdn/shop/files/Red_Product_PSD_AI_Trustpilot_Only_altern.png?v=1737711502&width=500" alt="" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">Dummy 13</h3><div class="prod-pr"><span class="prod-now">$19.95</span><span class="prod-was">$40.95</span></div><button class="prod-btn">Add to Cart</button></div></div>
+  <div class="prod-c"><div class="prod-im" style="background:linear-gradient(125deg,#eef2fa 50%,#faf8ee 50%)"><span class="prod-bg">SAVE 34%</span><img src="https://titan13toy.com/cdn/shop/files/IndestructibleT13ProductImage_1.png?v=1761774894&width=500" alt="" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">Indestructible Variants</h3><div class="prod-pr"><span class="prod-now">$30.95</span><span class="prod-was">$46.95</span></div><button class="prod-btn">Add to Cart</button></div></div>
+  <div class="prod-c"><div class="prod-im" style="background:#f2f2f2"><span class="prod-bg">SAVE 41%</span><img src="https://titan13toy.com/cdn/shop/files/HonoredT13ProductImage_2.png?v=1761774791&width=500" alt="" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">The Honored T13</h3><div class="prod-pr"><span class="prod-now">$29.95</span><span class="prod-was">$50.95</span></div><button class="prod-btn">Add to Cart</button></div></div>
+  <div class="prod-c"><div class="prod-im" style="background:#f0f2f8"><img src="https://titan13toy.com/cdn/shop/files/Noisy_T13_-_Mega_T13_Banner_1000_x_1200_px_1.png?v=1751053009&width=500" alt="" loading="lazy"></div><div class="prod-nf"><h3 class="prod-nm">Spring Pack</h3><div class="prod-pr"><span class="prod-now">$49.95</span></div><button class="prod-btn">Add to Cart</button></div></div>
+</div></div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="fo"><div class="ct">
+<div class="fo-g">
+  <div><div class="nv-l" style="font-size:1.5rem;color:#fff">TITAN<em style="color:var(--p)">13</em></div><p class="fo-tl">Built to Move. Made to Create.<br>3D printed articulated figures.</p><div class="fo-s"><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">TikTok</a></div></div>
+  <div class="fo-c"><h3 class="fo-ct">Shop</h3><ul><li><a href="#">All Products</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">T13 Packs</a></li><li><a href="#">New Arrivals</a></li></ul></div>
+  <div class="fo-c"><h3 class="fo-ct">Support</h3><ul><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li><li><a href="#">Shipping</a></li><li><a href="#">Tracking</a></li></ul></div>
+  <div class="fo-c"><h3 class="fo-ct">Company</h3><ul><li><a href="#">About</a></li><li><a href="#">Community</a></li><li><a href="#">Credits</a></li><li><a href="#">Privacy</a></li></ul></div>
+</div>
+<div class="fo-b"><div>© 2026 Titan13Toy · Dummy 13 © Lucky 13 Toys — CC BY 4.0</div><div class="fo-p"><span>VISA</span><span>MC</span><span>APPLE PAY</span><span>GPAY</span><span>KLARNA</span></div></div>
+</div></footer>
+
+<script>
+const sl=document.querySelectorAll('.h-sl'),dt=document.querySelectorAll('.h-dot');let c=0,tm;
+function go(n){sl[c].classList.remove('ac');dt[c].classList.remove('ac');c=n;sl[c].classList.add('ac');dt[c].classList.add('ac');dt.forEach(d=>{d.querySelector('.h-df').style.animation='none';d.offsetHeight;d.querySelector('.h-df').style.animation=''});dt[c].querySelector('.h-df').style.animation='dprog 6s linear forwards'}
+function nx(){go((c+1)%sl.length)}function st(){tm=setInterval(nx,6000)}
+dt.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(tm);go(i);st()}));st();
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ro.unobserve(e.target)}}),{threshold:.06});
+document.querySelectorAll('[data-r]').forEach(el=>ro.observe(el));
+function sM(t,s,b){const m=document.getElementById('pM');document.querySelectorAll('.pdp-tb').forEach(x=>x.classList.remove('ac'));b.classList.add('ac');m.innerHTML=t==='v'?'<video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;background:#000"><source src="'+s+'" type="video/mp4"></video>':'<img src="'+s+'" alt="" style="width:100%;height:100%;object-fit:cover;background:#000">'}
+function cQ(d){const i=document.getElementById('qI');i.value=Math.max(1,+i.value+d)}
+function tA(b){b.parentElement.classList.toggle('op')}
+</script>
+</body>
+</html>
